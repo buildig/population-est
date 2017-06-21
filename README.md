@@ -8,6 +8,8 @@ Fields:
 
 - OKOOD - Code of the local government
 - ONIMI - Name of the local government
+- ONIMI	= 'Aadressita isikud' - People with no fixed address
+- ONIMI	= 'Välisriigi aadressiga' - People with foreign address
 - MEHED - No. of men
 - NAISED - No. of women
 - KOKKU - Total
