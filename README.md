@@ -15,6 +15,7 @@ Fields:
 - KOKKU - Total
 
 ## Population data with EHAK 
-
+```
 php -r "readfile('https://github.com/buildig/EHAK/raw/master/geojson/omavalitsus.json');" > omavalitsus.json
 mapshaper omavalitsus.json -join omavalitsus_rahvaarv.csv keys=ONIMI,ONIMI
+```
