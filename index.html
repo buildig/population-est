@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=utf-8 />
+  <title>Eesti haldusjaotus</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <link rel='stylesheet' href='https://unpkg.com/leaflet@1.0.3/dist/leaflet.css' />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
+
+  <script src='https://unpkg.com/leaflet@1.0.3/dist/leaflet.js'></script>
+  <script src='https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js'></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .github-fork-ribbon.left-bottom:before {
+      background-color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id='map'></div>
+  <a class="github-fork-ribbon left-bottom fixed" href="https://github.com/buildig/population-est" title="buildig/population-est">buildig/population-est</a>
+
+  <script>
+    var map = new L.Map('map');
+
+    var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+    }).addTo(map);
+
+    function eachLayer(kov) {
+      var kovFeature = kov.toGeoJSON();
+      if (kovFeature.properties && kovFeature.properties.ONIMI) {
+        kov.bindPopup('<b>' + kovFeature.properties.ONIMI + '</b></br> Rahvaarv: ' + kovFeature.properties.KOKKU + '</br>' + kovFeature.properties.MNIMI);
+      }
+    }
+
+    var kovLayer = L.geoJson(null, {
+      style: {
+        color: 'orange',
+        weight: 1,
+        fillOpacity: 0.1
+      },
+      smoothFactor: 0.5,
+      attribution: '&copy; <a href="http://geoportaal.maaamet.ee/eng/Maps-and-Data/Administrative-and-Settlement-Division-p312.html">Maa-amet</a>'
+    });
+
+    var kov = omnivore.geojson('https://rawgit.com/buildig/population-est/master/omavalitsus_rahvaarv.json', null, kovLayer)
+      .on('ready', function() {
+        map.fitBounds(kov.getBounds());
+        map.addLayer(kov);
+        kov.eachLayer(eachLayer);
+      });
+
+    kov.on('click', function(e) {
+      map.fitBounds(e.layer.getBounds());
+    });
+  </script>
+</body>
+
+</html>
