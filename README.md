@@ -10,12 +10,17 @@ Fields:
 - ONIMI - Name of the local government
 - ONIMI	= 'Aadressita isikud' - People with no fixed address
 - ONIMI	= 'Välisriigi aadressiga' - People with foreign address
+- MNIMI
+- MKOOD
+- AREA - area in m2
 - MEHED - No. of men
 - NAISED - No. of women
 - KOKKU - Total
+- DENSITY - KOKKU / AREA (km2)
 
 ## Population data combined with EHAK 
 ```
-php -r "readfile('https://github.com/buildig/EHAK/raw/master/geojson/omavalitsus.json');" > omavalitsus.json
-mapshaper omavalitsus.json -join omavalitsus_rahvaarv.csv keys=ONIMI,ONIMI -o omavalitsus_rahvaarv.json
+php -r "readfile('https://github.com/buildig/EHAK/raw/master/geojson/omavalitsus.json');" > omavalitsus.json &&
+mapshaper omavalitsus.json -join rahvaarv.csv keys=ONIMI,ONIMI -each 'DENSITY=((KOKKU/(AREA/1000000)).toFixed(2))/1' -o omavalitsus_rahvaarv.json &&
+mapshaper omavalitsus.json -join rahvaarv.csv keys=ONIMI,ONIMI -each 'DENSITY=((KOKKU/(AREA/1000000)).toFixed(2))/1' -o omavalitsus_rahvaarv.csv
 ```
