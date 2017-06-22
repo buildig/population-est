@@ -20,7 +20,7 @@ Fields:
 
 ## Population data combined with EHAK 
 ```
-php -r "readfile('https://github.com/buildig/EHAK/raw/master/geojson/omavalitsus.json');" > omavalitsus.json
-mapshaper omavalitsus.json -join rahvaarv.csv keys=ONIMI,ONIMI -each 'DENSITY=((KOKKU/(AREA/1000000)).toFixed(2))/1' -o omavalitsus_rahvaarv.json
+php -r "readfile('https://github.com/buildig/EHAK/raw/master/geojson/omavalitsus.json');" > omavalitsus.json &&
+mapshaper omavalitsus.json -join rahvaarv.csv keys=ONIMI,ONIMI -each 'DENSITY=((KOKKU/(AREA/1000000)).toFixed(2))/1' -o omavalitsus_rahvaarv.json &&
 mapshaper omavalitsus.json -join rahvaarv.csv keys=ONIMI,ONIMI -each 'DENSITY=((KOKKU/(AREA/1000000)).toFixed(2))/1' -o omavalitsus_rahvaarv.csv
 ```
