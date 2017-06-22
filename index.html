@@ -44,7 +44,7 @@
     function eachLayer(kov) {
       var kovFeature = kov.toGeoJSON();
       if (kovFeature.properties && kovFeature.properties.ONIMI) {
-        kov.bindPopup('<b>' + kovFeature.properties.ONIMI + '</b></br>' + kovFeature.properties.MNIMI + '</br>Rahvaarv: ' + kovFeature.properties.KOKKU + '</br>Pindala: ' + (kovFeature.properties.AREA / 1000000).toFixed(2) + ' km<sup>2</sup></br>Tihedus, in/km<sup>2</sup>: ' + kovFeature.properties.DENSITY);
+        kov.bindPopup('<b>' + kovFeature.properties.ONIMI + '</b></br>' + kovFeature.properties.MNIMI + '</br>Rahvaarv: ' + kovFeature.properties.KOKKU + '</br>Pindala: ' + (kovFeature.properties.AREA / 1000000).toFixed(2) + ' km<sup>2</sup></br>Tihedus: ' + kovFeature.properties.DENSITY + ' in/km<sup>2</sup>');
       }
     }
 
