@@ -10,9 +10,13 @@ Fields:
 - ONIMI - Name of the local government
 - ONIMI	= 'Aadressita isikud' - People with no fixed address
 - ONIMI	= 'Välisriigi aadressiga' - People with foreign address
+- MNIMI
+- MKOOD
+- AREA - area in m2
 - MEHED - No. of men
 - NAISED - No. of women
 - KOKKU - Total
+- DENSITY - KOKKU / AREA (km2)
 
 ## Population data combined with EHAK 
 ```
