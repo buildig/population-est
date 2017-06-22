@@ -32,7 +32,7 @@
 <body>
 
   <div id='map'></div>
-  <a class="github-fork-ribbon left-bottom fixed" href="https://github.com/buildig/population-est" title="Source: buildig/population-est">Source: buildig/population-est</a>
+  <a class="github-fork-ribbon left-bottom fixed" href="https://github.com/buildig/population-est" title="buildig/population-est">buildig/population-est</a>
 
   <script>
     var map = new L.Map('map');
@@ -44,7 +44,7 @@
     function eachLayer(kov) {
       var kovFeature = kov.toGeoJSON();
       if (kovFeature.properties && kovFeature.properties.ONIMI) {
-        kov.bindPopup('<b>' + kovFeature.properties.ONIMI + '</b></br>Pindala: ' + (kovFeature.properties.AREA / 1000000).toFixed(2) + ' km<sup>2</sup></br> Rahvaarv: ' + kovFeature.properties.KOKKU + '</br>Maakond: ' + kovFeature.properties.MNIMI);
+        kov.bindPopup('<b>' + kovFeature.properties.ONIMI + '</b></br>' + kovFeature.properties.MNIMI + '</br>Pindala: ' + (kovFeature.properties.AREA / 1000000).toFixed(2) + ' km<sup>2</sup></br> Rahvaarv: ' + kovFeature.properties.KOKKU);
       }
     }
 
