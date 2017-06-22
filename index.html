@@ -32,7 +32,7 @@
 <body>
 
   <div id='map'></div>
-  <a class="github-fork-ribbon left-bottom fixed" href="https://github.com/buildig/population-est" title="buildig/population-est">buildig/population-est</a>
+  <a class="github-fork-ribbon left-bottom fixed" href="https://github.com/buildig/population-estonia" title="buildig/population-estonia">buildig/population-estonia</a>
 
   <script>
     var map = new L.Map('map');
@@ -58,7 +58,7 @@
       attribution: '&copy; <a href="http://geoportaal.maaamet.ee/eng/Maps-and-Data/Administrative-and-Settlement-Division-p312.html">Maa-amet</a>'
     });
 
-    var kov = omnivore.geojson('https://rawgit.com/buildig/population-est/master/omavalitsus_rahvaarv.json', null, kovLayer)
+    var kov = omnivore.geojson('https://rawgit.com/buildig/population-estonia/master/omavalitsus_rahvaarv.json', null, kovLayer)
       .on('ready', function() {
         map.fitBounds(kov.getBounds());
         map.addLayer(kov);
